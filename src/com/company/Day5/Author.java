@@ -21,4 +21,13 @@ public class Author {
     public void printAuthor() {
         System.out.println("Author name: " + name + " Author email: " + email + " Author gender " + gender);
     }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", gender=" + gender +
+                '}';
+    }
 }

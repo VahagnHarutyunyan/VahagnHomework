@@ -19,4 +19,13 @@ public class Person {
     public void printPerson() {
         System.out.println("Person name: " + name + " Person age: " + age + " Person address: " + address);
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

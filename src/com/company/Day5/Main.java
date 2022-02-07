@@ -13,5 +13,7 @@ public class Main {
         Book book1 = new Book("Animals",author,120);
         Book book2 = new Book("Wild",author,200);
 
+        System.out.println(employee2);
+
     }
 }
