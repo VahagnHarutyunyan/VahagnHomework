@@ -22,7 +22,8 @@ public class Day11 {
 //        sequence(x); //12.
 //        matrix13(x); //13.
 //        matrix14(x); //14.
-
+        exercise15(); //15.
+//        exercise16(x); //16
 
 
     }
@@ -89,7 +90,7 @@ public class Day11 {
             return 2;
         }
         double sqrt = Math.sqrt(x);
-        for (int i = 3; i <= sqrt; i++) {
+        for (int i = 3; i <= sqrt; i += 2) {
             if (x % i == 0) {
                 return i;
             }
@@ -216,5 +217,77 @@ public class Day11 {
         }
     }
 
+    static void exercise15() {
+        System.out.print("Enter the size: ");
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        for (int i = 0; i < (n + 2); i++) {
+            for (int j = 0; j < (n + 2); j++) {
+                if (i == 0 && j == 0) {
+                    System.out.printf("%4s", "   *");
+                } else if (i == 1) {
+                    System.out.printf("----");
+                } else if (j == 1 && i != 1) {
+                    System.out.printf("%4s", "   |");
+                } else if (i == 0) {
+                    System.out.printf("%4s", j - 1);
+                } else if (j == 0) {
+                    System.out.printf("%4s", i - 1);
+                } else {
+                    System.out.printf("%4s", (i - 1) * (j - 1));
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    static void exercise16(int n) {
+        String st = "*";
+        int k = 1;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (j % 2 == 1) {
+                    k = 5 - k;
+                    if (j < 2) {
+                        for (int x = 1; x <= k; x++) {
+                            System.out.print("*");
+                        }
+                        for (int x = 1; x <= 5 - k; x++) {
+                            System.out.print(" ");
+                        }
+                    } else {
+                        for (int x = 1; x <= 5 - k; x++) {
+                            System.out.print(" ");
+                        }
+                        for (int x = 1; x <= k; x++) {
+                            System.out.print("*");
+                        }
+                    }
+                } else {
+                    if (j >= 2) {
+                        for (int x = 1; x <= 5 - k; x++) {
+                            System.out.print(" ");
+                        }
+                        for (int x = 1; x <= k; x++) {
+                            System.out.print("*");
+                        }
+                    } else {
+                        for (int x = 1; x <= k; x++) {
+                            System.out.print("*");
+                        }
+                        for (int x = 1; x <= 5 - k; x++) {
+                            System.out.print(" ");
+                        }
+                    }
+                }
+
+            }
+            System.out.println();
+            k++;
+        }
+    }
+
 }
+
 
