@@ -5,10 +5,16 @@ import java.util.Scanner;
 public class Day13 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int x = scanner.nextInt();
+//        int x = scanner.nextInt();
 
-//        exerciseOne(); //1.
-//        exerciseTwo(x); //2.
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6,}, {4, 5, 6, 12}};
+
+
+//        exerciseOne();
+//        exerciseTwo(x);
+//        rotateBy180(matrix);
+//        System.out.println(exerciseThree());
+        exerciseFour();
 
     }
 
@@ -37,10 +43,10 @@ public class Day13 {
         int[][] matrix = new int[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if(j == n - 1 - i) {
+                if (j == n - 1 - i) {
                     matrix[i][j] = 1;
-                } else if(i + j < n) {
-                    matrix[i][j] = 8;
+                } else if (i + j < n) {
+                    matrix[i][j] = 0;
                 } else {
                     matrix[i][j] = 2;
                 }
@@ -53,6 +59,7 @@ public class Day13 {
             System.out.println();
         }
     }
+
     public static void rotateBy180(int[][] matrix) {
         int row = matrix.length;
         int col = matrix[0].length;
@@ -72,6 +79,43 @@ public class Day13 {
                 matrix[row / 2][col - j - 1] = temp;
             }
         }
+        for (int[] arr : matrix) {
+            for (int num : arr) {
+                System.out.print(num + "  ");
+            }
+            System.out.println();
+        }
+
+    }
+
+    static boolean exerciseThree() {
+        int[][] mx = {
+//                {0, 1, 2},
+//                {1, 5, 3},
+//                {1, 3, 4}
+                {1, 2, 3},
+                {2, 4, 5},
+                {3, 5, 8}
+        };
+        for (int[] arr : mx) {
+            for (int num : arr) {
+                System.out.print(num + "  ");
+            }
+            System.out.println();
+        }
+        for (int i = 0; i < mx.length; i++) {
+            for (int j = 0; j < mx[i].length; j++) {
+                if (i == j) {
+                    continue;
+                }
+                if (mx[i][j] != mx[j][i]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    static void exerciseFour() {
 
     }
 
