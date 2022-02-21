@@ -4,15 +4,28 @@ import java.util.Scanner;
 
 public class Day14 {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 //        System.out.println(task1("oou ui")); //1
 //        System.out.println(task2("12345678", 2)); //2
 //        System.out.println(task3("13452678", '2')); //3
 //        System.out.println(task4("sdlppoicnvbsjznckaasloa")); //4
 //        reverseString(); //5
-        countVowelsDigits("testing12345");
+
+//        System.out.print("Enter a String: ");
+
+//        countVowelsDigits(s); //6
+//        System.out.print("Enter a plaintext string: ");
+//        String s = scanner.nextLine();
+//        System.out.print("Enter distance: ");
+//        int distance = scanner.nextInt();
+//        System.out.println(caesarCode(s, distance)); //7
+//        System.out.println(checkPalindrome(s)); //8
+//        System.out.println(checkBinStr(s)); //9
+//        System.out.println(task10(s)); //10
+//        bin2Dec(); // 11
 
 
-
+        scanner.close();
     }
 
     static int task1(String str) {
@@ -48,10 +61,109 @@ public class Day14 {
         System.out.println(str);
         scanner.close();
     }
+
     static void countVowelsDigits(String str) {
-        int vowelsCount = 0;
-        int digitsCount = 0;
+        int vowelsCount = countVowels(str);
+        int digitsCount = countDigits(str);
+        System.out.printf("Number of vowels: " + vowelsCount + "\t\t" + (float) vowelsCount * 100 / str.length() + "\n");
+        System.out.println("Number of digits: " + digitsCount + "\t\t" + (float) digitsCount * 100 / str.length());
 
     }
+
+    static int countDigits(String s) {
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    static int countVowels(String s) {
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if ("aeiou".indexOf(s.toLowerCase().charAt(i)) != -1) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    static String caesarCode(String str, int distance) {
+        String newStr = "";
+        char letter;
+        for (int i = 0; i < str.length(); i++) {
+            letter = str.toUpperCase().charAt(i);
+
+            if (letter >= 'A' && letter <= 'Z') {
+                letter = (char) (letter + distance);
+            }
+            if (letter > 'Z') {
+                letter = (char) ('A' - 'Z' - 1 + letter);
+            }
+            newStr += letter;
+        }
+
+        return newStr;
+    }
+
+    static boolean checkPalindrome(String str) {
+        for (int i = 0, j = str.length() - 1; i < str.length() / 2; i++, j--) {
+            if (str.charAt(i) != str.charAt(j)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static boolean checkBinStr(String str) {
+        if (str.length() % 8 != 0 || !foo(str)) {
+            return false;
+        }
+        return true;
+    }
+
+    static boolean foo(String str) {
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) != '0' && str.charAt(i) != '1') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static boolean task10(String str) {
+        for (char ch : str.toUpperCase().toCharArray()) {
+            if (ch < '0' || ch > 'F' || (ch > '9' && ch < 'A')) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static void bin2Dec() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a Binary string: ");
+        String str = scanner.nextLine();
+        scanner.close();
+        if (!checkBinStr(str)) {
+            System.out.println("error: invalid binary string " + str);
+            return;
+        }
+        int p = 1;
+        int sum = 0;
+        char one = '1';
+        char[] charArray = str.toCharArray();
+        for (int i = charArray.length - 1; i >= 0; i--) {
+            if (charArray[i] == one) {
+                sum += p;
+            }
+            p *= 2;
+        }
+        System.out.println(sum);
+
+    }
+
 
 }
