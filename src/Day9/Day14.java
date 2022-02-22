@@ -23,9 +23,11 @@ public class Day14 {
 //        System.out.println(checkBinStr(s)); //9
 //        System.out.println(task10(s)); //10
 //        bin2Dec(); // 11
-
-
-        scanner.close();
+//        task12(); //12
+//        task13(); //13
+//
+//
+//        scanner.close();
     }
 
     static int task1(String str) {
@@ -33,6 +35,9 @@ public class Day14 {
     }
 
     static char task2(String str, int index) {
+        if (index < 0 || index > str.length() - 1) {
+            return ' ';
+        }
         return str.charAt(index);
     }
 
@@ -165,5 +170,41 @@ public class Day14 {
 
     }
 
+    static void task12() {
+        String str = "123452111";
+        int count = 0;
+        int countTemp;
+
+        for (int i = 0; i < str.length() - 1; i++) {
+            countTemp = 0;
+            for (int j = i + 1; j < str.length(); j++) {
+                if (str.charAt(i) == str.charAt(j)) {
+                    countTemp++;
+                }
+            }
+            if (countTemp == 1) {
+                count++;
+            }
+        }
+        System.out.println(count);
+    }
+
+    static void task13() {
+        String str = "444441123452333";
+
+        for (int i = 0; i < str.length(); i++) {
+            boolean bool = false;
+            for (int j = 0; j < str.length(); j++) {
+                if (str.charAt(i) == str.charAt(j) && i != j) {
+                    bool = true;
+                    break;
+                }
+            }
+            if (!bool) {
+                System.out.print(str.charAt(i));
+                break;
+            }
+        }
+    }
 
 }
