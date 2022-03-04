@@ -8,3 +8,10 @@ public class Dinosaur extends Animal {
         return "Dinosaur class animalRun method";
     }
 }
+
+class Dog extends Animal{
+    @Override
+    protected String animalRun() {
+        return "Dog class's animalRun method";
+    }
+}
